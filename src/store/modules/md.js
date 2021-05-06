@@ -45,7 +45,8 @@ const state = {
     count: 0,
     allcount: 0
   },
-  HomeCarousel: { tableData: [] }
+  HomeCarousel: { tableData: [] },
+  ThreeLevelState: false,
   // EditBulletinState: false,
 }
 
@@ -142,6 +143,9 @@ const mutations = {
   setFundList(state, payload) {
     state.FundList = payload
   },
+  setThreeLevelState(state, payload) {
+    state.ThreeLevelState = payload
+  }
   // setEditBulletinState(state, payload) {
   //   state.EditBulletinState = payload
   // },

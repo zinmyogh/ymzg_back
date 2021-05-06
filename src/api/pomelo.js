@@ -83,6 +83,7 @@ function send(msg) {
   // const en = global.en
   const msgSend = JSON.stringify(msg)
   // const msgSend = AES.encrypt(JSON.stringify(msg), en)
+  // console.log('msgSend ... ', msgSend)
   var route = 'agent.agentHandler.onMsg'
   p_server2.request(route, msgSend, function (res) {
     // console.log('res ', res)

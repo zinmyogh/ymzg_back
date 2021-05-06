@@ -304,19 +304,42 @@ function getImgList(rData) {
 function getAsset(rData) {
   // console.log('getAsset ', rData)
   if (rData.JsonData.result === 'ok') {
+    let data = rData.JsonData.data
+    let tableData = []
+    for(let i = 0; i<data.length; i++) {
+      tableData[i] = {}
+      tableData[i].name = data[i].name
+      tableData[i].score = data[i].score
+      tableData[i].stime = transTime(data[i].stime)
+      tableData[i].userId = data[i].userId
+    }
     let setdata = {
-      tableData: rData.JsonData.data,
+      tableData: tableData,
       totalItem: rData.JsonData.itemCount
     }
     store.commit('md/setAssetList', setdata)
   }
 }
 
+function transTime (times) {
+  moment.suppressDeprecationWarnings = true;
+  return moment(times).format('YYYY-MM-DD HH:mm:ss')
+}
+
 function getFunds(rData) {
   // console.log('getFunds ', rData)
   if (rData.JsonData.result === 'ok') {
+    let data = rData.JsonData.data
+    let tableData = []
+    for(let i = 0; i<data.length; i++) {
+      tableData[i] = {}
+      tableData[i].name = data[i].name
+      tableData[i].score = data[i].score
+      tableData[i].stime = transTime(data[i].stime)
+      tableData[i].userId = data[i].userId
+    }
     let setdata = {
-      tableData: rData.JsonData.data,
+      tableData: tableData,
       totalItem: rData.JsonData.itemCount
     }
     store.commit('md/setFundList', setdata)
@@ -329,6 +352,7 @@ function getThreeLevelMember(rData) {
   var treeData = {}
   treeData.tableData = data
   store.commit('md/setTreeData', treeData)
+  store.commit('md/setThreeLevelState', true)
 }
 
 function getNewMember(rData) {

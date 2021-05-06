@@ -168,17 +168,25 @@ export default {
         children: "children",
         label: "name",
       },
+      userId: ''
     }
   },
   computed: {
     ...mapState({ list: state => state.md.MemberInfo, wsData: state => state.md.treeData }),
-    ...mapGetters(['UState'])
+    ...mapGetters(['UState', 'ThreeLevelOk'])
   },
   watch: {
     UState: function(val) {
       if (val) {
         this.getList()
         this.$store.commit('md/setUserState', false)
+      }
+    },
+    ThreeLevelOk: function(state) {
+      if(state) {
+        // console.log(state, 'three level ok ?')
+        this.getData(this.userId)
+        this.$store.commit('md/setThreeLevelState', false)
       }
     }
   },
@@ -363,27 +371,29 @@ export default {
       return dataArray;
     },
     clickID(row) {
+      this.userId = ''
+      this.userId = row.Id
       const reqt = {
         router: 'getThreeLevelMember',
         JsonData: {
           userId: row.Id
         }
       }
-      // console.log('getThreeLevel ... ', reqt)
+      console.log('getThreeLevel ... ', reqt)
       this.$pomelo.send(reqt)
-      setTimeout(() => {
-        // let he = {
-        //     Id: row.Id,
-        //     gx: `^${row.Id}`,
-        //     level: row.level,
-        //     name: row.name,
-        //     nickname: row.nickname
-        //   }
-        // this.treeData.unshift(he)
-        // let data = this.treeData
-        this.getData(row.Id)
-        this.dialogVisible = true
-      }, 1000)
+      // setTimeout(() => {
+      //   // let he = {
+      //   //     Id: row.Id,
+      //   //     gx: `^${row.Id}`,
+      //   //     level: row.level,
+      //   //     name: row.name,
+      //   //     nickname: row.nickname
+      //   //   }
+      //   // this.treeData.unshift(he)
+      //   // let data = this.treeData
+      //   this.getData(row.Id)
+      this.dialogVisible = true
+      // }, 1000)
     },
     pushRelations(name) {
       let rel = this.relations

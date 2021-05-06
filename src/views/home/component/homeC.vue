@@ -146,7 +146,8 @@ import defaultSetting from '@/settings'
         JsonData: {
           Id: row.Id,
           enable: row.enable === '禁用' ? 0 : 1,
-          imgname: row.imgname
+          imgname: row.imgname,
+          address: 1
         }
       }
       // console.log('send edit img ', reqt)

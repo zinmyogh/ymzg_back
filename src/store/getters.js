@@ -20,5 +20,6 @@ const getters = {
   ULQRBGState: state => state.md.UploadQRBGState,
   LState: state => state.md.LinkState,
   EditScoreOk: state => state.md.EditScoreState,
+  ThreeLevelOk: state => state.md.ThreeLevelState
 }
 export default getters

@@ -115,22 +115,15 @@ export default {
           }
           const en = this.$Global.en
           this.$store.dispatch('user/login', lData).then(() => {
-          // this.$store.dispatch('user/login', AES.encrypt(JSON.stringify(lData), en)).then(() => {
-            // console.log('after resolve ')
             this.$pomelo.conn((err, res) => {
               if (err) console.error(err)
               if (res.code === '200') {
                 // console.log('res ', res)
-                // const en = this.$Global.en
-                // this.$Global.Pass = this.loginForm.password
-                // const ht_info = { account: this.loginForm.username, password: this.$md5(this.loginForm.password) }
-                // setHtInfo(AES.encrypt(JSON.stringify(ht_info), en))
-                // setAutoLogin('true')
                 this.$router.push({ path: this.redirect || '/', query: this.otherQuery })
+                // this.$router.push('/')
                 this.loading = false
               }
             })
-            // this.$router.push({ path: this.redirect || '/', query: this.otherQuery })
             this.loading = false
           }).catch(() => {
             this.loading = false

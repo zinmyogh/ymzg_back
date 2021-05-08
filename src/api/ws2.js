@@ -87,6 +87,10 @@ function doData (rData) {
     case 'deleteLink':
       deleteLink(rData)
       break
+    case 'getTodayLoginCount':
+      getTodayLoginCount(rData)
+      break
+
   }
 }
 
@@ -386,6 +390,14 @@ function deleteLink(rData) {
   // console.log('deleteLink response ', rData)
   if (rData.JsonData.result === 'ok') {
     Message.success('删除成功')
+  }
+}
+
+function getTodayLoginCount(rData) {
+  // console.log('getTodayLoginCount response ', rData)
+  let data = rData.JsonData
+  if(data) {
+    store.commit('md/setTodayTotalLogin', data.count)
   }
 }
 

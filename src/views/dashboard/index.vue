@@ -117,7 +117,7 @@
                     <div style="display: flex; flex-direction: column">
                         <span
                         style="padding-bottom: 5px; color: #808080; font-size: 44px"
-                        >总数量</span
+                        >用户总数量</span
                         >
                         <span style="font-size: 54px; color: #009688">{{ newMember.allcount }}</span>
                     </div>
@@ -133,6 +133,22 @@
                             <span style="font-size: 54px; color: #F44336">{{ newMember.count }}</span>
                         </div>
                         </el-card>
+                </el-col>
+            </el-row>
+            <br>
+            <el-row :gutter="20">
+                <el-col :span="12">
+                    <el-card shadow="hover">
+                    <div style="display: flex; flex-direction: column">
+                        <span
+                        style="padding-bottom: 5px; color: #808080; font-size: 44px"
+                        >今日活跃用户</span
+                        >
+                        <span style="font-size: 54px; color: #FF9800">{{ totalLoginCount }}</span>
+                    </div>
+                    </el-card>
+                </el-col>
+                <el-col :span="12">
                 </el-col>
             </el-row>
         </div>
@@ -158,16 +174,24 @@ export default {
     };
   },
   computed: {
-      ...mapState({ newMember: state => state.md.NewMember })
+      ...mapState({ newMember: state => state.md.NewMember, totalLoginCount: state => state.md.todayTotalLogin })
   },
   created() {
     // console.log(this.$Global.optioner)
     this.thisMonth()
     this.getNewMember()
+    this.getTodayLoginCount()
   },
   methods: {
     formatDate(date) {
         return moment(date).format("YYYY-MM-DD hh:mm:ss")
+    },
+    getTodayLoginCount() {
+      const reqt = {
+        router: 'getTodayLoginCount',
+        JsonData: {}
+      }
+      this.$pomelo.send(reqt)
     },
     getNewMember() {
       const reqt = {

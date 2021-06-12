@@ -379,7 +379,7 @@ export default {
           userId: row.Id
         }
       }
-      console.log('getThreeLevel ... ', reqt)
+      // console.log('getThreeLevel ... ', reqt)
       this.$pomelo.send(reqt)
       // setTimeout(() => {
       //   // let he = {

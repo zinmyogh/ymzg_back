@@ -149,6 +149,15 @@
                     </el-card>
                 </el-col>
                 <el-col :span="12">
+                  <el-card shadow="hover">
+                    <div style="display: flex; flex-direction: column">
+                        <span
+                        style="padding-bottom: 5px; color: #808080; font-size: 44px"
+                        >今日签到用户</span
+                        >
+                        <span style="font-size: 54px; color: #9C27B0">{{ totalSignCount }}</span>
+                    </div>
+                    </el-card>
                 </el-col>
             </el-row>
         </div>
@@ -168,19 +177,22 @@ export default {
       m: this.$Global.optioner,
       startDate: '',
       endDate: '',
-    //   startTime: new Date(2019, 9, 10, 12, 0, 0),
-    //   endTime: new Date(2019, 9, 10, 12, 0, 0),
       value1: ''
     };
   },
   computed: {
-      ...mapState({ newMember: state => state.md.NewMember, totalLoginCount: state => state.md.todayTotalLogin })
+      ...mapState({ 
+        newMember: state => state.md.NewMember, 
+        totalLoginCount: state => state.md.todayTotalLogin,
+        totalSignCount: state => state.md.todayTotalSign
+      })
   },
   created() {
     // console.log(this.$Global.optioner)
     this.thisMonth()
     this.getNewMember()
     this.getTodayLoginCount()
+    this.getSignNumber()
   },
   methods: {
     formatDate(date) {
@@ -189,6 +201,13 @@ export default {
     getTodayLoginCount() {
       const reqt = {
         router: 'getTodayLoginCount',
+        JsonData: {}
+      }
+      this.$pomelo.send(reqt)
+    },
+    getSignNumber() {
+      const reqt = {
+        router: 'getSignNumber',
         JsonData: {}
       }
       this.$pomelo.send(reqt)

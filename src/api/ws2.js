@@ -90,6 +90,9 @@ function doData (rData) {
     case 'getTodayLoginCount':
       getTodayLoginCount(rData)
       break
+    case 'getSignNumber':
+      getSignNumber(rData)
+      break
 
   }
 }
@@ -398,6 +401,14 @@ function getTodayLoginCount(rData) {
   let data = rData.JsonData
   if(data) {
     store.commit('md/setTodayTotalLogin', data.count)
+  }
+}
+
+function getSignNumber(rData) {
+  // console.log('getSignNumber response ', rData)
+  let data = rData.JsonData
+  if(data) {
+    store.commit('md/setTodayTotalSign', data.count)
   }
 }
 

@@ -47,7 +47,8 @@ const state = {
   },
   HomeCarousel: { tableData: [] },
   ThreeLevelState: false,
-  todayTotalLogin: ''
+  todayTotalLogin: 0,
+  todayTotalSign: 0,
   // EditBulletinState: false,
 }
 
@@ -149,6 +150,9 @@ const mutations = {
   },
   setTodayTotalLogin(state, payload) {
     state.todayTotalLogin = payload
+  },
+  setTodayTotalSign(state, payload) {
+    state.todayTotalSign = payload
   }
   // setEditBulletinState(state, payload) {
   //   state.EditBulletinState = payload
